@@ -43,10 +43,11 @@ def get_user(db,
              username):
     with Session(Database.engine) as db_sess:
         # db_sess: Optional[Session] = Database.get_session()
-        email_list = db_sess.query(UserInfo.EMAIL).filter(func.length(UserInfo.EMAIL) > 0).all()
-        db_sess.close()
+        email_list = list(fake_users_db.keys())
+        #db_sess.query(UserInfo.EMAIL).filter(func.length(UserInfo.EMAIL) > 0).all()
+        # db_sess.close()
     # print((username,) not in email_list)
-    if (username,) not in email_list:
+    if username not in email_list:
         raise HTTPException(status_code=400,
                             detail="INACTIVE USER")
     return UserPassword(**db[username])
