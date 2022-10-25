@@ -23,16 +23,17 @@ class Database:
         self._session: Optional[scoped_session] = None
 
     def connect(self) -> None:
-        self.engine = create_engine(url=db_url,
-                                    convert_unicode=True,
-                                    pool_recycle=30,
-                                    isolation_level="REPEATABLE READ",
-                                    future=True, # Migration to 2.0 Option
-                                    echo=False)
-        session_factory = sessionmaker(bind=self.engine)
-        self._session = scoped_session(session_factory=session_factory,
-                                       scopefunc=current_task)
-        Base.metadata.create_all(self.engine)
+        # self.engine = create_engine(url=db_url,
+        #                             convert_unicode=True,
+        #                             pool_recycle=30,
+        #                             isolation_level="REPEATABLE READ",
+        #                             future=True, # Migration to 2.0 Option
+        #                             echo=False)
+        # session_factory = sessionmaker(bind=self.engine)
+        # self._session = scoped_session(session_factory=session_factory,
+        #                                scopefunc=current_task)
+        # Base.metadata.create_all(self.engine)
+        print("TEST CONNECT")
 
     def dispose(self) -> None:
         if self.engine is None:

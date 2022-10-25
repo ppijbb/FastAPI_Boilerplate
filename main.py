@@ -7,7 +7,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from app.db.core.database import Database
-# database = Database()
+database = Database()
 from app.router.index import INDEX
 from app.router.user import USER
 from app.db.core.authorization import verify_access_token
@@ -37,6 +37,7 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+
 # 서버 시작시 db connect
 @app.on_event("startup")
 async def startup():
@@ -49,6 +50,7 @@ async def startup():
 async def shutdown():
     # database.dispose()
     print("doing something with test DB")
+
 
 # middleware 사전처리
 @app.middleware("http")

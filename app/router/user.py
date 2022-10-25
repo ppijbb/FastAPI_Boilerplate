@@ -6,7 +6,7 @@ from typing import Optional
 from sqlalchemy.orm import Session
 from fastapi.templating import Jinja2Templates
 from datetime import timedelta
-# from main import database as Database
+from main import database as Database
 from app.db.schemas import UserInfoSchema
 from app.db import crud
 from app.db.core.authorization import (get_current_active_user,
